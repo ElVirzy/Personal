@@ -5,22 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Frisnel Aditia Virgio Ginting - Profil</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* Reset dan Base Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         :root {
             --primary-color: #0a0a0a;
             --secondary-color: #e53935;
-            --accent-color: #f5f5f5;
+            --accent-color: #ffeb3b;
             --text-color: #f0f0f0;
             --card-bg: #1a1a1a;
             --gradient: linear-gradient(135deg, #e53935 0%, #b71c1c 100%);
+            --gradient-yellow: linear-gradient(135deg, #ffeb3b 0%, #fbc02d 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -28,8 +34,45 @@
             color: var(--text-color);
             line-height: 1.6;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-            background-attachment: fixed;
+            position: relative;
+        }
+
+        /* Efek latar belakang dengan blink-blink */
+        .background-effect {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(229, 57, 53, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 235, 59, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(229, 57, 53, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 60% 20%, rgba(255, 235, 59, 0.05) 0%, transparent 50%);
+        }
+
+        .twinkling {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .twinkle {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
         }
 
         /* Container Utama */
@@ -41,34 +84,31 @@
 
         /* Header */
         header {
-            text-align: center;
-            padding: 60px 0;
+            padding: 100px 0 60px;
             position: relative;
             overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
             width: 100%;
-            height: 100%;
-            background: var(--gradient);
-            opacity: 0.1;
-            z-index: -1;
         }
 
         .profile-img-container {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 25px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid var(--secondary-color);
-            box-shadow: 0 0 25px rgba(229, 57, 53, 0.7);
+            box-shadow: 0 0 30px rgba(229, 57, 53, 0.7);
             position: relative;
             transition: transform 0.5s ease;
+            flex-shrink: 0;
         }
 
         .profile-img-container:hover {
@@ -79,17 +119,16 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            background: linear-gradient(135deg, #333 0%, #555 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #aaa;
-            font-size: 1.2rem;
+            display: block;
+        }
+
+        .header-text {
+            flex: 1;
         }
 
         .name {
-            font-size: 2.8rem;
-            margin-bottom: 10px;
+            font-size: 3.2rem;
+            margin-bottom: 15px;
             color: var(--text-color);
             text-shadow: 0 0 15px rgba(229, 57, 53, 0.8);
             position: relative;
@@ -99,51 +138,136 @@
         .name::after {
             content: '';
             position: absolute;
-            bottom: -5px;
-            left: 10%;
+            bottom: -8px;
+            left: 0;
             width: 80%;
-            height: 3px;
+            height: 4px;
             background: var(--gradient);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         .title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: var(--secondary-color);
             margin-bottom: 10px;
             font-weight: 500;
         }
 
         .subtitle {
-            font-size: 1rem;
+            font-size: 1.1rem;
             color: #aaa;
             max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         /* Bagian Utama */
         main {
             padding: 40px 0;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
-            }
         }
 
         .section {
-            background-color: var(--card-bg);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            background-color: rgba(26, 26, 26, 0.85);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border-left: 5px solid var(--secondary-color);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .section::before {
@@ -158,12 +282,12 @@
 
         .section:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
         }
 
         .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
+            font-size: 2.2rem;
+            margin-bottom: 30px;
             color: var(--secondary-color);
             position: relative;
             display: inline-block;
@@ -172,12 +296,12 @@
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -8px;
+            bottom: -10px;
             left: 0;
-            width: 50px;
-            height: 3px;
+            width: 60px;
+            height: 4px;
             background: var(--gradient);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         /* Kontak */
@@ -185,15 +309,15 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
         .contact-item {
             display: flex;
             align-items: center;
-            padding: 18px;
+            padding: 20px;
             background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
-            border-radius: 12px;
+            border-radius: 15px;
             transition: all 0.3s ease;
             border: 1px solid #333;
         }
@@ -206,15 +330,15 @@
         }
 
         .contact-icon {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 18px;
-            font-size: 1.5rem;
+            margin-right: 20px;
+            font-size: 1.8rem;
             box-shadow: 0 5px 15px rgba(229, 57, 53, 0.4);
         }
 
@@ -223,13 +347,13 @@
         }
 
         .contact-label {
-            font-size: 0.9rem;
+            font-size: 1rem;
             color: #aaa;
             margin-bottom: 5px;
         }
 
         .contact-value {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--text-color);
             font-weight: 500;
         }
@@ -237,8 +361,8 @@
         /* Tombol Sosial Media */
         .social-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
             margin-top: 20px;
         }
 
@@ -247,11 +371,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px 15px;
+            padding: 25px 15px;
             background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
             color: var(--text-color);
             text-decoration: none;
-            border-radius: 12px;
+            border-radius: 15px;
             transition: all 0.3s ease;
             border: 1px solid #333;
             text-align: center;
@@ -283,8 +407,8 @@
         }
 
         .social-icon {
-            font-size: 2.5rem;
-            margin-bottom: 12px;
+            font-size: 3rem;
+            margin-bottom: 15px;
             z-index: 1;
             transition: transform 0.3s ease;
         }
@@ -294,15 +418,266 @@
         }
 
         .social-name {
-            font-size: 1rem;
+            font-size: 1.1rem;
             font-weight: 500;
             z-index: 1;
+        }
+
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 235, 59, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .category-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background: var(--gradient-yellow);
+            border-radius: 3px;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            transition: background 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Soft Skills */
+        .soft-skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .soft-skill-item {
+            background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .soft-skill-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(255, 235, 59, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .soft-skill-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .soft-skill-name {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* Pendidikan */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: var(--gradient);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            padding: 20px 0;
+            position: relative;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+
+        .timeline-content {
+            background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid #333;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(229, 57, 53, 0.3);
+            border-color: var(--secondary-color);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 10px solid #252525;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-right: 10px solid #252525;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            color: #aaa;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 4px solid var(--primary-color);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-marker {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-marker {
+            left: -10px;
+        }
+
+        /* Minat */
+        .interests-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .interest-item {
+            background: linear-gradient(135deg, #252525 0%, #1e1e1e 100%);
+            border-radius: 15px;
+            padding: 25px 20px;
+            text-align: center;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .interest-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(255, 235, 59, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .interest-icon {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+
+        .interest-name {
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 30px 0;
+            padding: 40px 0;
             border-top: 1px solid #333;
             color: #777;
             font-size: 0.9rem;
@@ -337,41 +712,71 @@
         .delay-3 { animation-delay: 0.6s; }
 
         /* Responsif */
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-marker,
+            .timeline-item:nth-child(even) .timeline-marker {
+                left: 20px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                border-right: 10px solid #252525;
+                border-left: none;
+            }
+        }
+
         @media (max-width: 768px) {
-            .name {
-                font-size: 2.2rem;
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
             }
             
             .profile-img-container {
-                width: 170px;
-                height: 170px;
+                width: 220px;
+                height: 220px;
+            }
+            
+            .name {
+                font-size: 2.5rem;
             }
             
             .section {
-                padding: 25px;
+                padding: 30px;
             }
             
-            .social-buttons {
-                grid-template-columns: repeat(2, 1fr);
+            .nav-links {
+                display: none;
             }
         }
 
         @media (max-width: 480px) {
             .name {
-                font-size: 1.8rem;
+                font-size: 2rem;
             }
             
             .profile-img-container {
-                width: 150px;
-                height: 150px;
+                width: 180px;
+                height: 180px;
             }
             
             .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .social-buttons {
-                grid-template-columns: 1fr;
+                font-size: 1.8rem;
             }
             
             .contact-item {
@@ -379,55 +784,297 @@
             }
             
             .contact-icon {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
                 margin-right: 15px;
             }
-        }
-
-        /* Efek partikel */
-        .particles {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            background: var(--secondary-color);
-            border-radius: 50%;
-            opacity: 0.3;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-20px) translateX(10px); }
-            100% { transform: translateY(0) translateX(0); }
         }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles"></div>
+    <!-- Background Effect -->
+    <div class="background-effect">
+        <div class="twinkling" id="twinkling"></div>
+    </div>
+    
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Fris<span>nel</span></a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Tentang</a></li>
+                <li><a href="#skills">Kemampuan</a></li>
+                <li><a href="#soft-skills">Soft Skills</a></li>
+                <li><a href="#education">Pendidikan</a></li>
+                <li><a href="#interests">Minat</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </div>
+    </nav>
     
     <div class="container">
-        <header>
-            <div class="profile-img-container fade-in">
-                <!-- Tempat untuk foto wajah Anda -->
-                <div class="profile-img">Foto Profil</div>
+        <!-- Header Section -->
+        <header id="home">
+            <div class="header-content">
+                <div class="profile-img-container fade-in">
+                    <img src="fotoku.jpg" alt="Frisnel Aditia Virgio Ginting" class="profile-img">
+                </div>
+                <div class="header-text">
+                    <h1 class="name fade-in delay-1">Frisnel Aditia Virgio Ginting</h1>
+                    <p class="title fade-in delay-1">Mahasiswa Universitas Gadjah Mada</p>
+                    <p class="subtitle fade-in delay-2">Jurusan Teknologi Rekayasa Internet</p>
+                </div>
             </div>
-            <h1 class="name fade-in delay-1">Frisnel Aditia Virgio Ginting</h1>
-            <p class="title fade-in delay-1">Mahasiswa Universitas Gadjah Mada</p>
-            <p class="subtitle fade-in delay-2">Jurusan Teknologi Rekayasa Internet</p>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
         </header>
 
         <main>
-            <section class="section fade-in delay-2">
+            <!-- About Section -->
+            <section class="section fade-in" id="about">
+                <h2 class="section-title">Tentang Saya</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8; margin-bottom: 20px;">
+                    Frisnel Aditia Virgio Ginting berusia 20 tahun berasal dari Medan, Sumatera Utara. Saat ini menjadi mahasiswa aktif di Universitas Gadjah Mada, Jurusan Teknologi Rekayasa Internet. Memiliki ketertarikan yang mendalam di bidang teknologi informasi dan desain yang mendorong untuk terus mengembangkan kemampuan di kedua bidang tersebut.
+                </p>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    Pembekalan soft skill mencakup kemampuan bekerja dalam tim, komunikasi efektif, leadership, manajemen waktu, serta pengambilan keputusan. Pengalaman di divisi media kreatif organisasi tingkat fakultas turut mengasah kemampuan tersebut dan menunjukkan bahwa perpaduan antara kreativitas dan teknologi dapat menghasilkan berbagai solusi yang inovatif.
+
+Fokus pengembangan saat ini mencakup bidang Artificial Intelligence, Cyber Security, Cloud Computing, serta pendalaman keterampilan UI/UX design. Upaya peningkatan kompetensi juga dilakukan melalui perluasan relasi dan penambahan pengalaman baru guna memperkuat soft skill maupun hard skill yang selaras dengan bidang studi yang dijalani.
+                </p>
+            </section>
+
+            <!-- Skills Section -->
+            <section class="section fade-in delay-1" id="skills">
+                <h2 class="section-title">Kemampuan</h2>
+                <div class="skills-container">
+                    <div class="skill-category">
+                        <h3 class="category-title">Office & Productivity</h3>
+                        <ul class="skills-list">
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-microsoft"></i>
+                                </div>
+                                <span class="skill-name">Microsoft Word</span>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-microsoft"></i>
+                                </div>
+                                <span class="skill-name">Microsoft Excel</span>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-microsoft"></i>
+                                </div>
+                                <span class="skill-name">Microsoft PowerPoint</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="category-title">Design & Editing</h3>
+                        <ul class="skills-list">
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-figma"></i>
+                                </div>
+                                <span class="skill-name">Figma</span>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-palette"></i>
+                                </div>
+                                <span class="skill-name">Canva</span>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <span class="skill-name">CapCut</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3 class="category-title">Programming</h3>
+                        <ul class="skills-list">
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <span class="skill-name">Python</span>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <span class="skill-name">HTML/CSS</span>
+                            </li>
+                            <li class="skill-item">
+                                <div class="skill-icon">
+                                    <i class="fab fa-js"></i>
+                                </div>
+                                <span class="skill-name">JavaScript</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Soft Skills Section -->
+            <section class="section fade-in delay-2" id="soft-skills">
+                <h2 class="section-title">Soft Skills</h2>
+                <div class="soft-skills-container">
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Teamwork</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-bullhorn"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Public Speaking</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-flag"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Leadership</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Time Management</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Decision Making</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Communication</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Problem Solving</h3>
+                    </div>
+                    <div class="soft-skill-item">
+                        <div class="soft-skill-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3 class="soft-skill-name">Collaboration</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="section fade-in delay-3" id="education">
+                <h2 class="section-title">Pendidikan</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2025 - Sekarang</div>
+                            <h3 class="timeline-title">Universitas Gadjah Mada</h3>
+                            <p class="timeline-desc">Teknologi Rekayasa Internet</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2024 - 2025</div>
+                            <h3 class="timeline-title">Universitas Brawijaya</h3>
+                            <p class="timeline-desc">Sistem Informasi</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2021 - 2024</div>
+                            <h3 class="timeline-title">SMA Santo Thomas 2 Medan</h3>
+                            <p class="timeline-desc">Jurusan IPA</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <div class="timeline-date">2018 - 2021</div>
+                            <h3 class="timeline-title">SMP Negeri 1 Medan</h3>
+                            <p class="timeline-desc"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interests Section -->
+            <section class="section fade-in delay-3" id="interests">
+                <h2 class="section-title">Bidang Minat</h2>
+                <div class="interests-container">
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="interest-name">Artificial Intelligence</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="interest-name">Cyber Security</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <h3 class="interest-name">Cloud Computing</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <h3 class="interest-name">Video Editing</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="interest-name">Web Design</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="interest-name">Mobile Development</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="interest-name">Desain Poster</h3>
+                    </div>
+                    <div class="interest-item">
+                        <div class="interest-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="interest-name">Membuat Aplikasi</h3>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section class="section fade-in" id="contact">
                 <h2 class="section-title">Informasi Kontak</h2>
                 <ul class="contact-list">
                     <li class="contact-item">
@@ -459,6 +1106,15 @@
                     </li>
                     <li class="contact-item">
                         <div class="contact-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="contact-text">
+                            <div class="contact-label">TikTok</div>
+                            <div class="contact-value">@nel.vrgioo</div>
+                        </div>
+                    </li>
+                    <li class="contact-item">
+                        <div class="contact-icon">
                             <i class="fab fa-line"></i>
                         </div>
                         <div class="contact-text">
@@ -476,10 +1132,8 @@
                         </div>
                     </li>
                 </ul>
-            </section>
 
-            <section class="section fade-in delay-3">
-                <h2 class="section-title">Tautan Langsung</h2>
+                <h3 style="margin-top: 40px; margin-bottom: 20px; color: var(--accent-color);">Tautan Langsung</h3>
                 <div class="social-buttons">
                     <a href="mailto:frisneladitia@gmail.com" class="social-button">
                         <div class="social-icon">
@@ -498,6 +1152,12 @@
                             <i class="fab fa-instagram"></i>
                         </div>
                         <div class="social-name">Instagram</div>
+                    </a>
+                    <a href="https://www.tiktok.com/@nel.vrgioo" target="_blank" class="social-button">
+                        <div class="social-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <div class="social-name">TikTok</div>
                     </a>
                     <a href="https://line.me/ti/p/~frisnelmunthe123" target="_blank" class="social-button">
                         <div class="social-icon">
@@ -521,28 +1181,30 @@
     </div>
 
     <script>
-        // Membuat efek partikel
+        // Membuat efek twinkle (blink-blink)
         document.addEventListener('DOMContentLoaded', function() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 20;
+            const twinkling = document.getElementById('twinkling');
+            const starCount = 100;
             
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('twinkle');
                 
-                // Ukuran dan posisi acak
-                const size = Math.random() * 5 + 2;
+                // Posisi acak
                 const left = Math.random() * 100;
                 const top = Math.random() * 100;
-                const delay = Math.random() * 15;
+                const size = Math.random() * 3 + 1;
+                const delay = Math.random() * 5;
+                const duration = Math.random() * 3 + 2;
                 
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${left}%`;
-                particle.style.top = `${top}%`;
-                particle.style.animationDelay = `${delay}s`;
+                star.style.left = `${left}%`;
+                star.style.top = `${top}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                star.style.animationDelay = `${delay}s`;
+                star.style.animationDuration = `${duration}s`;
                 
-                particlesContainer.appendChild(particle);
+                twinkling.appendChild(star);
             }
             
             // Animasi untuk elemen dengan kelas fade-in
@@ -561,6 +1223,24 @@
                 el.style.transform = 'translateY(20px)';
                 el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
                 observer.observe(el);
+            });
+            
+            // Smooth scrolling untuk navigasi
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
             });
         });
     </script>
